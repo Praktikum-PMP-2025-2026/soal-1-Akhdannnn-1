@@ -14,7 +14,7 @@
 float hitung_avg(int *arr, int n) {
     float sum = 0;
     float hasil;
-    for (int i = 0; i <= n; i++) {
+    for (int i = 0; i < n; i++) {
         sum += arr[i];
     }
     hasil = sum / n;
@@ -23,7 +23,7 @@ float hitung_avg(int *arr, int n) {
 
 int hitung_sum(int *arr, int n) {
     int hasil = 0;
-    for (int i = 0; i <= n; i++) {
+    for (int i = 0; i < n; i++) {
         hasil += arr[i];
     }
     return hasil;
@@ -38,6 +38,8 @@ int cari_max(int *arr, int n) {
     }
     return max;
 }
+
+
 
 int main() {
     int n;
@@ -58,6 +60,14 @@ int main() {
 
     int MAX = cari_max(nilai, n);
     printf("\nMAX %d", MAX);
+    
+    int IDX = 0;
+    for (int i = 0; i < n; i++) {
+        if (nilai[i] == MAX) {
+            IDX += 1; 
+        }
+    }
+    printf("\nIDX %d", IDX);
 
     return 0;
 }
