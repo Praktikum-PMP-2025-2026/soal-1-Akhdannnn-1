@@ -1,9 +1,9 @@
 /** EL2008 Praktikum Pemecahan Masalah dengan Pemrograman 2024/2025
 *   Modul               : N
-*   Hari dan Tanggal    : 
-*   Nama (NIM)          : 
+*   Hari dan Tanggal    : Rabu, 22 april 2026
+*   Nama (NIM)          : Ahmad Akhdan Tristan Salman (13224039)
 *   Nama File           : soal1.c
-*   Deskripsi           : 
+*   Deskripsi           : Program untuk analisis pointer
 * 
 */
 
@@ -11,63 +11,77 @@
 #include <stdio.h>
 #include <string.h>
   
-float hitung_avg(int *arr, int n) {
+void hitung_avg(int *arr, int n, float *avg) {
     float sum = 0;
     float hasil;
     for (int i = 0; i < n; i++) {
         sum += arr[i];
     }
     hasil = sum / n;
-    return hasil;
+    *avg = hasil;
 }
 
-int hitung_sum(int *arr, int n) {
+void hitung_sum(int *arr, int n, int* sum) {
     int hasil = 0;
     for (int i = 0; i < n; i++) {
         hasil += arr[i];
     }
-    return hasil;
+    *sum = hasil;
+    
 }
 
-int cari_max(int *arr, int n) {
-    int max = *arr;
+void cari_max(int *arr, int n, int *max) {
+    int hasil = *arr;
     for (int *p = arr + 1; p < arr + n; p++) {
-        if (*p > max) {
-            max = *p;
+        if (*p > hasil) {
+            hasil = *p;
         }
     }
-    return max;
+    *max = hasil;
 }
 
-
+void first_idx(int *arr, int n, int *idx) {
+    int IDX = 0;
+    int MAX = *arr;
+    for (int *p = arr + 1; p < arr + n; p++) {
+        if (*p > MAX) {
+            MAX = *p;
+        }
+    }
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == MAX) {
+            IDX = i;
+            break; 
+        }
+    }
+    *idx = IDX;
+}
 
 int main() {
     int n;
     scanf("%d", &n);
     int nilai[1000];
     int *arr[1000];
+    float AVG;
+    int SUM;
+    int MAX;
+    int IDX;
 
     for (int i = 0; i < n; i++) {
         scanf("%d", &nilai[i]);
         arr[i] = &nilai[i];
     }
 
-    int SUM = hitung_sum(nilai, n);
+    hitung_sum(nilai, n, &SUM);
     printf("\nSUM %d", SUM);
 
-    float AVG = hitung_avg(nilai, n);
+    hitung_avg(nilai, n, &AVG);
     printf("\nAVG %.2f", AVG);
 
-    int MAX = cari_max(nilai, n);
+    cari_max(nilai, n, &MAX);
     printf("\nMAX %d", MAX);
     
-    int IDX = 0;
-    for (int i = 0; i < n; i++) {
-        if (nilai[i] == MAX) {
-            IDX = i;
-            break; 
-        }
-    }
+    first_idx(nilai, n, &IDX);
     printf("\nIDX %d", IDX);
 
     return 0;
