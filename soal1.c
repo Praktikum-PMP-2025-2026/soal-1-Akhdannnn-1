@@ -64,7 +64,8 @@ int main() {
     int IDX = 0;
     for (int i = 0; i < n; i++) {
         if (nilai[i] == MAX) {
-            IDX += 1; 
+            IDX = i;
+            break; 
         }
     }
     printf("\nIDX %d", IDX);
