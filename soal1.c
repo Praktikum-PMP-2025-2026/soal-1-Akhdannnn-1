@@ -56,8 +56,8 @@ int main() {
     }
 
     hitung_avg(nilai, n, &AVG, &SUM);
-    printf("\nAVG %d", SUM);
-    printf("\nSUM %.2f", AVG);
+    printf("\nSUM %d", SUM);
+    printf("\nAVG %.2f", AVG);
     
     first_idx(nilai, n, &IDX, &MAX);
     printf("\nMAX %d", MAX);
