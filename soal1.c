@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <string.h>
   
-void hitung_avg(int *arr, int n, float *avg) {
+void hitung_avg(int *arr, int n, float *avg, int* total) {
     float sum = 0;
     float hasil;
     for (int i = 0; i < n; i++) {
@@ -19,28 +19,10 @@ void hitung_avg(int *arr, int n, float *avg) {
     }
     hasil = sum / n;
     *avg = hasil;
+    *total = (int)sum;
 }
 
-void hitung_sum(int *arr, int n, int* sum) {
-    int hasil = 0;
-    for (int i = 0; i < n; i++) {
-        hasil += arr[i];
-    }
-    *sum = hasil;
-    
-}
-
-void cari_max(int *arr, int n, int *max) {
-    int hasil = *arr;
-    for (int *p = arr + 1; p < arr + n; p++) {
-        if (*p > hasil) {
-            hasil = *p;
-        }
-    }
-    *max = hasil;
-}
-
-void first_idx(int *arr, int n, int *idx) {
+void first_idx(int *arr, int n, int *idx, int *max) {
     int IDX = 0;
     int MAX = *arr;
     for (int *p = arr + 1; p < arr + n; p++) {
@@ -55,6 +37,7 @@ void first_idx(int *arr, int n, int *idx) {
         }
     }
     *idx = IDX;
+    *max = MAX;
 }
 
 int main() {
@@ -72,16 +55,12 @@ int main() {
         arr[i] = &nilai[i];
     }
 
-    hitung_sum(nilai, n, &SUM);
-    printf("\nSUM %d", SUM);
-
-    hitung_avg(nilai, n, &AVG);
-    printf("\nAVG %.2f", AVG);
-
-    cari_max(nilai, n, &MAX);
-    printf("\nMAX %d", MAX);
+    hitung_avg(nilai, n, &AVG, &SUM);
+    printf("\nAVG %d", SUM);
+    printf("\nSUM %.2f", AVG);
     
-    first_idx(nilai, n, &IDX);
+    first_idx(nilai, n, &IDX, &MAX);
+    printf("\nMAX %d", MAX);
     printf("\nIDX %d", IDX);
 
     return 0;
